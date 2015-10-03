@@ -12,12 +12,22 @@ var environment = process.env.NODE_ENV;
 app.use(logger('dev'));
 
 console.log('Starting server on port: ' + port);
-console.log('DEVELOPMENT');
 
-app.use(express.static('./src/client/'));
-app.use(express.static('./'));
-app.use(express.static('./tmp'));
-app.use('/*', express.static('./src/client/index.html'));
+switch (environment) {
+    case 'prod':
+        console.log('PRODUCTION');
+        console.log('prod environment has not been setup!');
+        //app.use(express.static('./build/'));
+        //app.use('/*', express.static('./build/index.html'));
+        break;
+    default:
+        console.log('DEVELOPMENT');
+        app.use(express.static('./src/client/'));
+        app.use(express.static('./'));
+        app.use(express.static('./tmp'));
+        app.use('/*', express.static('./src/client/index.html'));
+        break;
+}
 
 app.listen(port, function() {
     console.log('Express server listening on port ' + port);
