@@ -4,12 +4,14 @@
 var express = require('express');
 var app = express();
 
+var favicon = require('serve-favicon');
 var logger = require('morgan');
 
 var port = process.env.PORT || 7203;
 var environment = process.env.NODE_ENV;
 
 app.use(logger('dev'));
+app.use(favicon(__dirname + '/favicon.ico'));
 
 console.log('Starting server on port: ' + port);
 
