@@ -3,19 +3,21 @@
     'use strict';
 
     angular.module('profileApp', ['ngRoute'])
-        .config(function($routeProvider) {
-            $routeProvider.when('/profile', {
-                templateUrl: 'templates/profile.html',
-                controller: 'profileController'
+        .config(function($routeProvider, $locationProvider) {
+            $routeProvider.when('/', {
+                templateUrl: 'app/profile/profile.html',
             });
             $routeProvider.when('/skills', {
-                templateUrl: 'templates/skills.html'
+                templateUrl: 'app/skills/skills.html',
             });
             $routeProvider.when('/network', {
-                templateUrl: 'templates/network.html'
+                templateUrl: 'app/network/network.html',
             });
             $routeProvider.when('/contact', {
-                templateUrl: 'templates/contact.html'
+                templateUrl: 'app/contact/contact.html',
             });
+            $routeProvider.otherwise({redirectTo: '/'});
+
+            $locationProvider.html5Mode(true);
         });
 })();
