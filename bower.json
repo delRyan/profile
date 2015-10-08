@@ -4,6 +4,7 @@
   "authors": [
     "Ryan Delaney <ryan.del17@gmail.com>"
   ],
+  "private": true,
   "description": "Ryan Delaney's personal profile page.",
   "main": "",
   "moduleType": [],
