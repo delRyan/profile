@@ -3,10 +3,10 @@
     
     angular
         .module('app')
-        .controller('Profile', Profile);
+        .controller('Profile', ['$scope', Profile]);
     
     function Profile($scope) {
-        $scope.test = "Hello, Profile Angular Controller!";
+        $scope.hello = "Hello, Profile Controller!";
     }
     
 })();
