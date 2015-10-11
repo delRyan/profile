@@ -7,6 +7,7 @@ var browserSync = require('browser-sync');
 var $ = require('gulp-load-plugins')({lazy: true});
 var gulpif = require('gulp-if');
 var gulpprint = require('gulp-print');
+var stylish = require('gulp-jscs-stylish');
 var args = require('yargs').argv;
 var port = process.env.PORT || config.defaultPort;
 
@@ -17,6 +18,7 @@ gulp.task('vet', function() {
         .pipe(gulpif(args.verbose, gulpprint()))
         .pipe($.jscs())
         .pipe($.jshint())
+        .pipe(stylish.combineWithHintResults())
         .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
         .pipe($.jshint.reporter('fail'));
 });
