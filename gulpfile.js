@@ -1,24 +1,21 @@
 'use strict';
 
 var gulp = require('gulp');
+var $ = require('gulp-load-plugins')();
 var config = require('./gulpconfig.js')();
-var nodemon = require('gulp-nodemon');
+
 var browserSync = require('browser-sync');
-var $ = require('gulp-load-plugins')({lazy: true});
-var gulpif = require('gulp-if');
-var gulpprint = require('gulp-print');
-var stylish = require('gulp-jscs-stylish');
 var args = require('yargs').argv;
 var port = process.env.PORT || config.defaultPort;
 
 gulp.task('vet', function() {
 
     return gulp
-        .src(['./src/**/*.js', './*.js'])
-        .pipe(gulpif(args.verbose, gulpprint()))
+        .src(config.alljs)
+        .pipe($.if(args.verbose, $.print()))
         .pipe($.jscs())
         .pipe($.jshint())
-        .pipe(stylish.combineWithHintResults())
+        .pipe($.jscsStylish.combineWithHintResults())
         .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
         .pipe($.jshint.reporter('fail'));
 });
@@ -29,7 +26,7 @@ gulp.task('wiredep', function() {
     return gulp
         .src(config.index)
         .pipe(wiredep(config.getWiredepOptions()))
-        //.pipe($.inject(gulp.src(config.js)))
+        .pipe($.inject(gulp.src(config.injectjs)))
         .pipe(gulp.dest(config.client));
 });
 
@@ -45,7 +42,7 @@ gulp.task('dev', gulp.series('wiredep', function() {
 
     startBrowserSync();
 
-    return nodemon(nodeOptions)
+    return $.nodemon(nodeOptions)
         .on('restart', function() {
             setTimeout(function() {
                 browserSync.notify('reloading');

@@ -8,6 +8,9 @@ module.exports = function() {
         client: client,
         index: client + 'index.html',
 
+        alljs: ['./src/**/*.js', './*.js'],
+        injectjs: client + 'app/**/*.js',
+
         defaultPort: 7203
     };
 
