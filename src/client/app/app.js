@@ -2,10 +2,11 @@
 
     'use strict';
 
-    angular.module('profileApp', ['ngRoute'])
+    angular.module('app', ['ngRoute'])
         .config(function($routeProvider, $locationProvider) {
             $routeProvider.when('/', {
                 templateUrl: 'app/profile/profile.html',
+                controller: 'Profile'
             });
             $routeProvider.when('/skills', {
                 templateUrl: 'app/skills/skills.html',
