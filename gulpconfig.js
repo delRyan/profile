@@ -8,7 +8,9 @@ module.exports = function() {
         client: client,
         index: client + 'index.html',
 
-        alljs: ['./src/**/*.js', './*.js'],
+        vetjs: ['./src/**/*.js',
+                './*.js',
+                '!./karma.conf.js'],
         injectjs: client + 'app/**/*.js',
 
         defaultPort: 7203

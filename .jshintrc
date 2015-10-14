@@ -90,6 +90,8 @@
 
     // Custom Globals
     "globals"       : {
-        "angular": false
+        //TODO: Is there a better way to solve this?
+        "angular": false,
+        "assert": false
     }        // additional predefined global variables
 }

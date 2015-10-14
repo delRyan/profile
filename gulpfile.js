@@ -11,7 +11,7 @@ var port = process.env.PORT || config.defaultPort;
 gulp.task('vet', function() {
 
     return gulp
-        .src(config.alljs)
+        .src(config.vetjs)
         .pipe($.if(args.verbose, $.print()))
         .pipe($.jscs())
         .pipe($.jshint())
