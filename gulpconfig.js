@@ -11,7 +11,8 @@ module.exports = function() {
         vetjs: ['./src/**/*.js',
                 './*.js',
                 '!./karma.conf.js'],
-        injectjs: client + 'app/**/*.js',
+        injectjs: [client + 'app/**/*.js',
+                   '!' + client + 'app/**/*.spec.js'],
 
         defaultPort: 7203
     };
