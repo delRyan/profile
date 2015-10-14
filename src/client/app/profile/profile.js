@@ -5,11 +5,11 @@
         .module('app')
         .controller('Profile', Profile);
 
-    Profile.$inject = ['$scope'];
+    function Profile() {
+        var vm = this;
 
-    function Profile($scope) {
-
-        $scope.hello = 'Hello, Profile Controller!';
+        vm.title = 'Profile Controller';
+        vm.fullName = 'Ryan Delaney';
     }
 
 })();
