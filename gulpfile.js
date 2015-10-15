@@ -5,6 +5,7 @@ var $ = require('gulp-load-plugins')();
 var config = require('./gulpconfig.js')();
 
 var browserSync = require('browser-sync');
+var KarmaServer = require('karma').Server;
 var args = require('yargs').argv;
 var port = process.env.PORT || config.defaultPort;
 
@@ -28,6 +29,13 @@ gulp.task('wiredep', function() {
         .pipe(wiredep(config.getWiredepOptions()))
         .pipe($.inject(gulp.src(config.injectjs)))
         .pipe(gulp.dest(config.client));
+});
+
+gulp.task('test', function(done) {
+    new KarmaServer({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, done).start();
 });
 
 gulp.task('dev', gulp.series('wiredep', function() {
