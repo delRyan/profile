@@ -1,5 +1,8 @@
-'use strict';
+/*jshint expr: true*/
+/*jshint -W117 */
+
 describe('profile controller', function() {
+    'use strict';
 
     var controller;
 
