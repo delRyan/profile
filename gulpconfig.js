@@ -14,6 +14,8 @@ module.exports = function() {
         injectjs: [client + 'app/**/*.js',
                    '!' + client + 'app/**/*.spec.js'],
 
+        serverjs: './src/server/server.js',
+
         defaultPort: 7203
     };
 

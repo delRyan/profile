@@ -41,7 +41,7 @@ gulp.task('test', function(done) {
 
 gulp.task('dev', gulp.series('wiredep', function() {
     var nodeOptions = {
-        script: 'src/server/app.js',
+        script: config.serverjs,
         delayTime: 1,
         env: {
             'PORT': port,
