@@ -26,7 +26,8 @@ gulp.task('wiredep', function() {
     return gulp
         .src(config.index)
         .pipe(wiredep(config.getWiredepOptions()))
-        .pipe($.inject(gulp.src(config.injectjs)))
+        .pipe($.inject(gulp.src(config.injectjs)
+        .pipe($.angularFilesort())))
         .pipe(gulp.dest(config.client));
 });
 
