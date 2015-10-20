@@ -68,16 +68,35 @@ gulp.task('dev', gulp.series('wiredep', function() {
 
 gulp.task('build', gulp.series('wiredep', 'clean-build', function() {
 
-    var jsFilter = $.filter('**/*.js', {restore: true});
+    var assets = $.useref.assets({searchPath: './'});
 
-    return gulp.src([].concat(config.index, config.injectjs))
-        .pipe($.plumber())
-        .pipe($.rename({dirname: ''}))
-        .pipe(jsFilter)
-        .pipe($.concat('all.js'))
-        .pipe($.uglify())
-        .pipe(jsFilter.restore)
+    //var jsFilter = $.filter('**/*.js', {restore: true});
+
+    gulp.src(config.index)
+        .pipe($.eol())
+        .pipe(assets)
+        .pipe(assets.restore())
+        .pipe($.useref())
         .pipe(gulp.dest(config.buildfolder));
+
+var nodeOptions = {
+        script: config.serverjs,
+        delayTime: 1,
+        env: {
+            'PORT': port,
+            'NODE_ENV': 'prod'
+        }
+    };
+
+    startBrowserSync();
+
+    return $.nodemon(nodeOptions)
+        .on('restart', function() {
+            setTimeout(function() {
+                browserSync.notify('reloading');
+                browserSync.reload({stream: false});
+            }, 1000);
+        });
 }));
 
 ///

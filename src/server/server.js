@@ -17,9 +17,8 @@ console.log('Starting server on port: ' + port);
 switch (environment) {
     case 'prod':
         console.log('PRODUCTION');
-        console.log('prod environment has not been setup!');
-        //app.use(express.static('./build/'));
-        //app.use('/*', express.static('./build/index.html'));
+        app.use(express.static('./build/'));
+        app.use('/*', express.static('./build/index.html'));
         break;
     default:
         console.log('DEVELOPMENT');
