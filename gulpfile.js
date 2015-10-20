@@ -6,6 +6,7 @@ var config = require('./gulpconfig.js')();
 
 var browserSync = require('browser-sync');
 var args = require('yargs').argv;
+var del = require('del');
 var port = process.env.PORT || config.defaultPort;
 
 gulp.task('vet', function() {
@@ -18,6 +19,10 @@ gulp.task('vet', function() {
         .pipe($.jscsStylish.combineWithHintResults())
         .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
         .pipe($.jshint.reporter('fail'));
+});
+
+gulp.task('clean-build', function() {
+    return del(config.buildfolder + '*');
 });
 
 gulp.task('wiredep', function() {
@@ -61,9 +66,26 @@ gulp.task('dev', gulp.series('wiredep', function() {
         });
 }));
 
+gulp.task('build', gulp.series('wiredep', 'clean-build', function() {
+
+    var jsFilter = $.filter('**/*.js', {restore: true});
+
+    return gulp.src([].concat(config.index, config.injectjs))
+        .pipe($.plumber())
+        .pipe($.rename({dirname: ''}))
+        .pipe(jsFilter)
+        .pipe($.concat('all.js'))
+        .pipe($.uglify())
+        .pipe(jsFilter.restore)
+        .pipe(gulp.dest(config.buildfolder));
+}));
+
+///
+
 function startBrowserSync() {
-    if (browserSync.active) { return; }
+    if (browserSync.active) {
+        return;
+    }
 
     browserSync(config.getBrowserSyncOptions());
 }
-

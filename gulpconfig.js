@@ -16,6 +16,10 @@ module.exports = function() {
 
         serverjs: './src/server/server.js',
 
+        //Folders
+        tempfolder: './temp/',
+        buildfolder: './build/',
+
         defaultPort: 7203
     };
 
