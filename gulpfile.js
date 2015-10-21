@@ -89,14 +89,23 @@ gulp.task('build', gulp.series('wiredep', 'build-clean', 'temp-templatecache', f
 
     var assets = $.useref.assets({searchPath: './'});
 
-    //var jsFilter = $.filter('**/*.js', {restore: true});
+    var appJsFilter = $.filter('**/app.js', {restore: true});
+    var libJsFilter = $.filter('**/lib.js', {restore: true});
 
     gulp.src(config.index)
         .pipe($.plumber())
         .pipe($.inject(
-            gulp.src(templateFile, {read: false}), {starttag: templateTag}))
+            gulp.src(templateFile, {read: false}), {starttag: templateTag}
+        ))
         .pipe($.eol())
         .pipe(assets)
+        .pipe(libJsFilter)
+        .pipe($.uglify())
+        .pipe(libJsFilter.restore)
+        .pipe(appJsFilter)
+        .pipe($.ngAnnotate())
+        .pipe($.uglify())
+        .pipe(appJsFilter.restore)
         .pipe(assets.restore())
         .pipe($.useref())
         .pipe(gulp.dest(config.buildfolder));
