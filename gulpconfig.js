@@ -33,8 +33,7 @@ module.exports = function() {
             file: 'templates.js',
             options: {
                 module: 'app',
-                standAlone: false,
-                root: 'app/'
+                standAlone: false
             },
         }
     };

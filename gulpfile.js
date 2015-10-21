@@ -21,10 +21,6 @@ gulp.task('vet', function() {
         .pipe($.jshint.reporter('fail'));
 });
 
-gulp.task('clean-build', function() {
-    return del(config.buildfolder + '*');
-});
-
 gulp.task('wiredep', function() {
     var wiredep = require('wiredep').stream;
 
@@ -33,7 +29,7 @@ gulp.task('wiredep', function() {
         .pipe(wiredep(config.getWiredepOptions()))
         .pipe($.inject(gulp.src(config.injectjs)
         .pipe($.angularFilesort())))
-        .pipe(gulp.dest(config.client));
+        .pipe(gulp.dest(config.clientfolder));
 });
 
 gulp.task('test', function(done) {
@@ -66,7 +62,14 @@ gulp.task('dev', gulp.series('wiredep', function() {
         });
 }));
 
-gulp.task('build', gulp.series('wiredep', 'clean-build', function() {
+gulp.task('temp-clean', function() {
+    return del(config.tempfolder + '*');
+});
+
+gulp.task('build-clean', function() {
+    return del(config.buildfolder + '*');
+});
+
 gulp.task('temp-templatecache', function() {
     return gulp
         .src(config.htmltemplates)
@@ -79,18 +82,26 @@ gulp.task('temp-templatecache', function() {
         .pipe(gulp.dest(config.tempfolder));
 });
 
+gulp.task('build', gulp.series('wiredep', 'build-clean', 'temp-templatecache', function() {
+
+    var templateFile = config.tempfolder + 'templates.js';
+    var templateTag = '<!-- inject:templates:js -->';
+
     var assets = $.useref.assets({searchPath: './'});
 
     //var jsFilter = $.filter('**/*.js', {restore: true});
 
     gulp.src(config.index)
+        .pipe($.plumber())
+        .pipe($.inject(
+            gulp.src(templateFile, {read: false}), {starttag: templateTag}))
         .pipe($.eol())
         .pipe(assets)
         .pipe(assets.restore())
         .pipe($.useref())
         .pipe(gulp.dest(config.buildfolder));
 
-var nodeOptions = {
+    var nodeOptions = {
         script: config.serverjs,
         delayTime: 1,
         env: {
