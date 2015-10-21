@@ -67,6 +67,17 @@ gulp.task('dev', gulp.series('wiredep', function() {
 }));
 
 gulp.task('build', gulp.series('wiredep', 'clean-build', function() {
+gulp.task('temp-templatecache', function() {
+    return gulp
+        .src(config.htmltemplates)
+        .pipe($.eol())
+        .pipe($.minifyHtml({empty: true}))
+        .pipe($.angularTemplatecache(
+            config.templateCache.file,
+            config.templateCache.options
+            ))
+        .pipe(gulp.dest(config.tempfolder));
+});
 
     var assets = $.useref.assets({searchPath: './'});
 

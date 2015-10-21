@@ -1,26 +1,42 @@
 'use strict';
 
 module.exports = function() {
-    var client = './src/client/';
+    var clientfolder = './src/client/';
+    var indexhtml = clientfolder + 'index.html';
 
     var config = {
         //Files
-        client: client,
-        index: client + 'index.html',
+        index: indexhtml,
 
         vetjs: ['./src/**/*.js',
                 './*.js',
                 '!./karma.conf.js'],
-        injectjs: [client + 'app/**/*.js',
-                   '!' + client + 'app/**/*.spec.js'],
+
+        injectjs: [clientfolder + 'app/**/*.js',
+                   '!' + clientfolder + 'app/**/*.spec.js'],
 
         serverjs: './src/server/server.js',
 
+        htmltemplates: [clientfolder + '**/*.html',
+                        '!' + indexhtml],
+
         //Folders
-        tempfolder: './temp/',
+        clientfolder: clientfolder,
+
+        tempfolder: './.temp/',
         buildfolder: './build/',
 
-        defaultPort: 7203
+        defaultPort: 7203,
+
+        //Templatecache Options
+        templateCache: {
+            file: 'templates.js',
+            options: {
+                module: 'app',
+                standAlone: false,
+                root: 'app/'
+            },
+        }
     };
 
     //Wiredep Options
