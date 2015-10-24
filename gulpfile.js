@@ -106,8 +106,10 @@ gulp.task('build', gulp.series('wiredep', 'build-clean', 'temp-templatecache', f
         .pipe($.ngAnnotate())
         .pipe($.uglify())
         .pipe(appJsFilter.restore)
+        .pipe($.rev())
         .pipe(assets.restore())
         .pipe($.useref())
+        .pipe($.revReplace())
         .pipe(gulp.dest(config.buildfolder));
 
     var nodeOptions = {
