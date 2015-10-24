@@ -4,6 +4,8 @@ module.exports = function() {
     var clientfolder = './src/client/';
     var indexhtml = clientfolder + 'index.html';
 
+    var tempFolder = './.temp/';
+
     var config = {
         //Files
         index: indexhtml,
@@ -17,25 +19,29 @@ module.exports = function() {
 
         serverjs: './src/server/server.js',
 
-        htmltemplates: [clientfolder + '**/*.html',
-                        '!' + indexhtml],
+        templates: {
+            html: [clientfolder + '**/*.html',
+                   '!' + indexhtml],
+
+            cacheFileName: 'templates.js',
+            cacheFile: tempFolder + 'templates.js',
+
+            injectTag: '<!-- inject:templates:js -->',
+
+            cacheOptions: {
+                module: 'app',
+                standAlone: false
+            },
+
+        },
 
         //Folders
         clientfolder: clientfolder,
 
-        tempfolder: './.temp/',
+        tempfolder: tempFolder,
         buildfolder: './build/',
 
         defaultPort: 7203,
-
-        //Templatecache Options
-        templateCache: {
-            file: 'templates.js',
-            options: {
-                module: 'app',
-                standAlone: false
-            },
-        }
     };
 
     //Wiredep Options

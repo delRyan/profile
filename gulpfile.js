@@ -42,18 +42,10 @@ gulp.task('test', function(done) {
 });
 
 gulp.task('dev', gulp.series('wiredep', function() {
-    var nodeOptions = {
-        script: config.serverjs,
-        delayTime: 1,
-        env: {
-            'PORT': port,
-            'NODE_ENV': 'dev'
-        }
-    };
 
     startBrowserSync();
 
-    return $.nodemon(nodeOptions)
+    return $.nodemon(getNodeOptions(/*isDev*/ true))
         .on('restart', function() {
             setTimeout(function() {
                 browserSync.notify('reloading');
@@ -72,21 +64,17 @@ gulp.task('build-clean', function() {
 
 gulp.task('temp-templatecache', function() {
     return gulp
-        .src(config.htmltemplates)
+        .src(config.templates.html)
         .pipe($.eol())
         .pipe($.minifyHtml({empty: true}))
         .pipe($.angularTemplatecache(
-            config.templateCache.file,
-            config.templateCache.options
-            ))
+            config.templates.cacheFileName,
+            config.templates.cacheOptions
+        ))
         .pipe(gulp.dest(config.tempfolder));
 });
 
 gulp.task('build', gulp.series('wiredep', 'build-clean', 'temp-templatecache', function() {
-
-    var templateFile = config.tempfolder + 'templates.js';
-    var templateTag = '<!-- inject:templates:js -->';
-
     var assets = $.useref.assets({searchPath: './'});
 
     var appJsFilter = $.filter('**/app.js', {restore: true});
@@ -95,7 +83,8 @@ gulp.task('build', gulp.series('wiredep', 'build-clean', 'temp-templatecache', f
     gulp.src(config.index)
         .pipe($.plumber())
         .pipe($.inject(
-            gulp.src(templateFile, {read: false}), {starttag: templateTag}
+            gulp.src(config.templates.cacheFile, {read: false}),
+            {starttag: config.templates.injectTag}
         ))
         .pipe($.eol())
         .pipe(assets)
@@ -112,18 +101,9 @@ gulp.task('build', gulp.series('wiredep', 'build-clean', 'temp-templatecache', f
         .pipe($.revReplace())
         .pipe(gulp.dest(config.buildfolder));
 
-    var nodeOptions = {
-        script: config.serverjs,
-        delayTime: 1,
-        env: {
-            'PORT': port,
-            'NODE_ENV': 'prod'
-        }
-    };
-
     startBrowserSync();
 
-    return $.nodemon(nodeOptions)
+    return $.nodemon(getNodeOptions(/*isDev*/ false))
         .on('restart', function() {
             setTimeout(function() {
                 browserSync.notify('reloading');
@@ -140,4 +120,18 @@ function startBrowserSync() {
     }
 
     browserSync(config.getBrowserSyncOptions());
+}
+
+function getNodeOptions(isDev) {
+
+    var environment = !!isDev ? 'dev' : 'prod';
+
+    return {
+        script: config.serverjs,
+        delayTime: 1,
+        env: {
+            'PORT': port,
+            'NODE_ENV': environment
+        }
+    };
 }
