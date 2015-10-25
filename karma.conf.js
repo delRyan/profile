@@ -1,5 +1,8 @@
 // Karma configuration
 // Generated on Tue Oct 13 2015 18:57:10 GMT-0500 (Central Daylight Time)
+// jscs:disable
+/* jshint ignore:start */
+
 
 module.exports = function(config) {
   config.set({
