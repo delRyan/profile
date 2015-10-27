@@ -11,127 +11,127 @@ var port = process.env.PORT || config.defaultPort;
 
 gulp.task('vet', function() {
 
-    return gulp
-        .src(config.vetjs)
-        .pipe($.if(args.verbose, $.print()))
-        .pipe($.jscs())
-        .pipe($.jshint())
-        .pipe($.jscsStylish.combineWithHintResults())
-        .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
-        .pipe($.jshint.reporter('fail'));
+  return gulp
+      .src(config.vetjs)
+      .pipe($.if(args.verbose, $.print()))
+      .pipe($.jscs())
+      .pipe($.jshint())
+      .pipe($.jscsStylish.combineWithHintResults())
+      .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
+      .pipe($.jshint.reporter('fail'));
 });
 
 gulp.task('wiredep', function() {
-    var wiredep = require('wiredep').stream;
+  var wiredep = require('wiredep').stream;
 
-    return gulp
-        .src(config.index)
-        .pipe(wiredep(config.getWiredepOptions()))
-        .pipe($.inject(gulp.src(config.injectjs)
-        .pipe($.angularFilesort())))
-        .pipe(gulp.dest(config.clientfolder));
+  return gulp
+      .src(config.index)
+      .pipe(wiredep(config.getWiredepOptions()))
+      .pipe($.inject(gulp.src(config.injectjs)
+      .pipe($.angularFilesort())))
+      .pipe(gulp.dest(config.clientfolder));
 });
 
 gulp.task('test', function(done) {
-    var KarmaServer = require('karma').Server;
+  var KarmaServer = require('karma').Server;
 
-    new KarmaServer({
-        configFile: __dirname + '/karma.conf.js',
-        singleRun: true
-    }, done).start();
+  new KarmaServer({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
 
 gulp.task('dev', gulp.series('wiredep', function() {
 
-    startBrowserSync();
+  startBrowserSync();
 
-    return $.nodemon(getNodeOptions(/*isDev*/ true))
-        .on('restart', function() {
-            setTimeout(function() {
-                browserSync.notify('reloading');
-                browserSync.reload({stream: false});
-            }, 1000);
+  return $.nodemon(getNodeOptions(/*isDev*/ true))
+      .on('restart', function() {
+          setTimeout(function() {
+            browserSync.notify('reloading');
+            browserSync.reload({stream: false});
+          }, 1000);
         });
 }));
 
 gulp.task('temp-clean', function() {
-    return del(config.tempfolder + '*');
+  return del(config.tempfolder + '*');
 });
 
 gulp.task('build-clean', function() {
-    return del(config.buildfolder + '*');
+  return del(config.buildfolder + '*');
 });
 
 gulp.task('temp-templatecache', function() {
-    return gulp
-        .src(config.templates.html)
-        .pipe($.eol())
-        .pipe($.minifyHtml({empty: true}))
-        .pipe($.angularTemplatecache(
-            config.templates.cacheFileName,
-            config.templates.cacheOptions
-        ))
-        .pipe(gulp.dest(config.tempfolder));
+  return gulp
+      .src(config.templates.html)
+      .pipe($.eol())
+      .pipe($.minifyHtml({empty: true}))
+      .pipe($.angularTemplatecache(
+          config.templates.cacheFileName,
+          config.templates.cacheOptions
+      ))
+      .pipe(gulp.dest(config.tempfolder));
 });
 
 gulp.task('build', gulp.series('wiredep', 'build-clean', 'temp-templatecache', function() {
-    var assets = $.useref.assets({searchPath: './'});
+  var assets = $.useref.assets({searchPath: './'});
 
-    var appJsFilter = $.filter('**/app.js', {restore: true});
-    var libJsFilter = $.filter('**/lib.js', {restore: true});
+  var appJsFilter = $.filter('**/app.js', {restore: true});
+  var libJsFilter = $.filter('**/lib.js', {restore: true});
 
-    gulp.src(config.index)
-        .pipe($.plumber())
-        .pipe($.inject(
-            gulp.src(config.templates.cacheFile, {read: false}),
-            {starttag: config.templates.injectTag}
-        ))
-        .pipe($.eol())
-        .pipe(assets)
-        .pipe(libJsFilter)
-        .pipe($.uglify())
-        .pipe(libJsFilter.restore)
-        .pipe(appJsFilter)
-        .pipe($.ngAnnotate())
-        .pipe($.uglify())
-        .pipe(appJsFilter.restore)
-        .pipe($.rev())
-        .pipe(assets.restore())
-        .pipe($.useref())
-        .pipe($.revReplace())
-        .pipe(gulp.dest(config.buildfolder));
+  gulp.src(config.index)
+      .pipe($.plumber())
+      .pipe($.inject(
+          gulp.src(config.templates.cacheFile, {read: false}),
+          {starttag: config.templates.injectTag}
+      ))
+      .pipe($.eol())
+      .pipe(assets)
+      .pipe(libJsFilter)
+      .pipe($.uglify())
+      .pipe(libJsFilter.restore)
+      .pipe(appJsFilter)
+      .pipe($.ngAnnotate())
+      .pipe($.uglify())
+      .pipe(appJsFilter.restore)
+      .pipe($.rev())
+      .pipe(assets.restore())
+      .pipe($.useref())
+      .pipe($.revReplace())
+      .pipe(gulp.dest(config.buildfolder));
 
-    startBrowserSync();
+  startBrowserSync();
 
-    return $.nodemon(getNodeOptions(/*isDev*/ false))
-        .on('restart', function() {
-            setTimeout(function() {
-                browserSync.notify('reloading');
-                browserSync.reload({stream: false});
-            }, 1000);
-        });
+  return $.nodemon(getNodeOptions(/*isDev*/ false))
+      .on('restart', function() {
+        setTimeout(function() {
+          browserSync.notify('reloading');
+          browserSync.reload({stream: false});
+        }, 1000);
+      });
 }));
 
 ///
 
 function startBrowserSync() {
-    if (browserSync.active) {
-        return;
-    }
+  if (browserSync.active) {
+    return;
+  }
 
-    browserSync(config.getBrowserSyncOptions());
+  browserSync(config.getBrowserSyncOptions());
 }
 
 function getNodeOptions(isDev) {
 
-    var environment = !!isDev ? 'dev' : 'prod';
+  var environment = !!isDev ? 'dev' : 'prod';
 
-    return {
-        script: config.serverjs,
-        delayTime: 1,
-        env: {
-            'PORT': port,
-            'NODE_ENV': environment
-        }
-    };
+  return {
+    script: config.serverjs,
+    delayTime: 1,
+    env: {
+      'PORT': port,
+      'NODE_ENV': environment
+    }
+  };
 }
