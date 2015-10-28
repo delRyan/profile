@@ -1,15 +1,15 @@
 <html>
-    <head>
-        <!-- bower:css -->
-        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
-        <!-- endbower -->
+  <head>
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
 
-        <!-- inject:css -->
-        <!-- endinject -->
-        <base href="/">
-    </head>
-    <body ng-app="app">
-      <nav class="navbar navbar-default navbar-static-top">
+    <!-- inject:css -->
+    <!-- endinject -->
+    <base href="/">
+  </head>
+  <body ng-app="app">
+    <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -21,8 +21,7 @@
           <a class="navbar-brand" href="#">Ryan Delaney</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-          </ul>
+          <ul class="nav navbar-nav"/>
           <ul class="nav navbar-nav navbar-right">
             <li><a>Profile</a></li>
             <li><a>Skills</a></li>
@@ -37,25 +36,25 @@
     <div>Hello, Angular! 1+2 = {{1+2}}</div>
     <div ui-view></div>
 
-        <!-- build:js js/lib.js -->
-        <!-- bower:js -->
-        <script src="/bower_components/jquery/dist/jquery.js"></script>
-        <script src="/bower_components/angular/angular.js"></script>
-        <script src="/bower_components/angular-animate/angular-animate.js"></script>
-        <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-        <!-- endbower -->
-        <!-- endbuild -->
+    <!-- build:js js/lib.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
 
-        <!-- build:js js/app.js -->
-        <!-- inject:js -->
-        <script src="/src/client/app/app.module.js"></script>
-        <script src="/src/client/app/profile/profile.js"></script>
-        <!-- endinject -->
+    <!-- build:js js/app.js -->
+    <!-- inject:js -->
+    <script src="/src/client/app/app.module.js"></script>
+    <script src="/src/client/app/profile/profile.js"></script>
+    <!-- endinject -->
 
-        <!-- inject:templates:js -->
-        <!-- endinject -->
+    <!-- inject:templates:js -->
+    <!-- endinject -->
 
-        <!-- endbuild -->
-    </body>
+    <!-- endbuild -->
+  </body>
 </html>
