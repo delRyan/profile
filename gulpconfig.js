@@ -17,6 +17,8 @@ module.exports = function() {
     injectjs: [clientfolder + 'app/**/*.js',
                '!' + clientfolder + 'app/**/*.spec.js'],
 
+    injectcss: [clientfolder + '**/*.css'],
+
     serverjs: './src/server/server.js',
 
     templates: {
