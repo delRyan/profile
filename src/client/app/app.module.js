@@ -2,7 +2,7 @@
 
   'use strict';
 
-  angular.module('app', ['ui.router'])
+  angular.module('app', ['ui.router', 'ngAnimate'])
     .config(function($locationProvider, $stateProvider, $urlRouterProvider) {
 
       $urlRouterProvider.otherwise('/');
