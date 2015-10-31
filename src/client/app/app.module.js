@@ -1,25 +1,32 @@
 (function() {
 
-    'use strict';
+  'use strict';
 
-    angular.module('app', ['ngRoute'])
-        .config(function($routeProvider, $locationProvider) {
-            $routeProvider.when('/', {
-                templateUrl: 'app/profile/profile.html',
-                controller: 'Profile',
-                controllerAs: 'profile'
-            });
-            $routeProvider.when('/skills', {
-                templateUrl: 'app/skills/skills.html',
-            });
-            $routeProvider.when('/network', {
-                templateUrl: 'app/network/network.html',
-            });
-            $routeProvider.when('/contact', {
-                templateUrl: 'app/contact/contact.html',
-            });
-            $routeProvider.otherwise({redirectTo: '/'});
+  angular.module('app', ['ui.router', 'ngAnimate'])
+    .config(function($locationProvider, $stateProvider, $urlRouterProvider) {
 
-            $locationProvider.html5Mode(true);
+      $urlRouterProvider.otherwise('/');
+
+      $stateProvider
+        .state('profile', {
+          url: '/',
+          templateUrl: 'app/profile/profile.html',
+          controller: 'Profile',
+          controllerAs: 'profile'
+        })
+        .state('skills', {
+          url: '/skills',
+          templateUrl: 'app/skills/skills.html'
+        })
+        .state('network', {
+          url: '/network',
+          templateUrl: 'app/network/network.html'
+        })
+        .state('contact', {
+          url: '/contact',
+          templateUrl: 'app/contact/contact.html'
         });
+
+      $locationProvider.html5Mode(true);
+    });
 })();

@@ -14,7 +14,7 @@
       "value": 120,
       "allExcept": ["comments", "regex"]
     },
-    "validateIndentation": 4,
+    "validateIndentation": 2,
     "validateQuoteMarks": "'",
 
     "disallowMultipleLineStrings": true,

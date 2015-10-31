@@ -1,15 +1,14 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('app')
-        .controller('Profile', Profile);
+  angular
+    .module('app')
+    .controller('Profile', Profile);
 
-    function Profile() {
-        var vm = this;
+  function Profile() {
+    var vm = this;
 
-        vm.title = 'Profile Controller';
-        vm.fullName = 'Ryan Delaney';
-    }
-
+    vm.title = 'Profile Controller';
+    vm.fullName = 'Ryan Delaney';
+  }
 })();
