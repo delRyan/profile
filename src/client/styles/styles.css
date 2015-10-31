@@ -1,3 +1,7 @@
+.navbar-font {
+  font-size: 17px;
+}
+
 .main-content {
   display: flex;
   justify-content: center;
