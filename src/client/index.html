@@ -11,7 +11,7 @@
     <base href="/">
   </head>
   <body ng-app="app">
-    <nav class="navbar navbar-default navbar-static-top navbar-font">
+    <nav class="navbar navbar-default navbar-static-top navbar-transparent">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -34,7 +34,8 @@
       </div>
     </nav>
 
-    <div class="main-content fade-transition" ui-view></div>
+    <!--div class="main-content fade-transition" ui-view data-ng-style="{'background-image':'url(images/interstellar.jpg)'}"></div-->
+    <div class="main-content fade-transition space-background" ui-view></div>
 
     <!-- build:js js/lib.js -->
     <!-- bower:js -->

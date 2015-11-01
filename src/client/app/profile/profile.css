@@ -1,4 +1,14 @@
-.title {
+.title-container {
   text-align: center;
-  padding-bottom: 400px;
+  padding-bottom: 25vh;
+}
+
+.title {
+  font-size: 60px;
+  color: white;
+}
+
+.sub-title {
+  font-size: 30px;
+  color: white;
 }
