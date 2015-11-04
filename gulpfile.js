@@ -25,10 +25,15 @@ gulp.task('temp-clean-styles', function() {
   return del(config.tempfolder + '**/*.css');
 });
 
+gulp.task('styles-watcher', function() {
+  gulp.watch([config.less], gulp.series('styles'));
+});
+
 gulp.task('styles', gulp.series('temp-clean-styles', function() {
 
   return gulp
       .src(config.less)
+      .pipe($.plumber())
       .pipe($.less())
       .pipe($.autoprefixer())
       .pipe($.rename({dirname: 'styles/'}))
