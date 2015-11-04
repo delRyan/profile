@@ -1,0 +1,59 @@
+.navbar-transparent {
+  margin-top: 30px;
+  background-color: transparent;
+  font-size: 20px;
+  border: 0px;
+}
+.navbar-default .navbar-nav > li > a,
+.container .navbar-header > a {
+  color: white;
+  height: 40px;
+  line-height: 10px;
+  margin-right: 10px;
+}
+.navbar-default .navbar-nav > li > a:hover {
+  color: #2098d1;
+  /* BF2B25 */
+}
+.navbar-default .navbar-nav > li > a:focus {
+  color: white;
+}
+.navbar-default .navbar-brand {
+  color: white;
+  font-size: 20px;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: white;
+}
+#ghost-button {
+  color: white;
+  height: 40px;
+  line-height: 29px;
+  margin-right: 10px;
+  display: inline-block;
+  width: 100px;
+  padding: 5px;
+  color: #2098d1;
+  border: 1px solid #2098d1;
+  border-radius: 5px;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+#ghost-button:hover {
+  background-color: #2098d1;
+  color: white;
+}
