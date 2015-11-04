@@ -21,17 +21,40 @@ gulp.task('vet', function() {
       .pipe($.jshint.reporter('fail'));
 });
 
-gulp.task('wiredep', function() {
-  var wiredep = require('wiredep').stream;
+gulp.task('temp-clean-styles', function() {
+  return del(config.tempfolder + '**/*.css');
+});
+
+gulp.task('styles', gulp.series('temp-clean-styles', function() {
 
   return gulp
-      .src(config.index)
+      .src(config.less)
+      .pipe($.less())
+      .pipe($.autoprefixer())
+      .pipe($.rename({dirname: 'styles/'}))
+      .pipe(gulp.dest(config.tempfolder));
+}));
+
+gulp.task('temp-clean-images', function() {
+  return del(config.tempfolder + 'images/**/*.*');
+});
+
+gulp.task('images', gulp.series('temp-clean-images', function() {
+
+  return gulp.src(config.images)
+      .pipe(gulp.dest(config.tempfolder + 'images'));
+}));
+
+gulp.task('wiredep', gulp.series('images', 'styles', function() {
+  var wiredep = require('wiredep').stream;
+
+  return gulp.src(config.index)
       .pipe(wiredep(config.getWiredepOptions()))
       .pipe($.inject(gulp.src(config.injectjs)
       .pipe($.angularFilesort())))
       .pipe($.inject(gulp.src(config.injectcss)))
       .pipe(gulp.dest(config.clientfolder));
-});
+}));
 
 gulp.task('test', function(done) {
   var KarmaServer = require('karma').Server;
