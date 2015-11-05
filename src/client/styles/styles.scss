@@ -18,23 +18,6 @@
   width: 66%;
 }
 
-.hover-fade {
-  display: inline-block;
-  vertical-align: middle;
-  transform: translateZ(0);
-  box-shadow: 0 0 1px $transparent;
-  backface-visibility: hidden;
-  overflow: hidden;
-  transition-duration: 0.4s;
-  transition-property: color, background-color;
-}
-.hover-fade:hover,
-.hover-fade:focus,
-.hover-fade:active {
-  background-color: $blue;
-  color: $white;
-}
-
 .fade-transition {
     position: absolute;
     top: 0;
