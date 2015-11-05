@@ -1,8 +1,8 @@
 .space-background {
   background-image: url("../images/interstellar.jpg");
   background-size: cover;
-  background-color: black;
-}
+  background-color: black; }
+
 .main-content {
   display: -webkit-box;
   display: -webkit-flex;
@@ -16,55 +16,33 @@
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  height: calc(29vh);
-}
+  height: calc(100vh - 71px); }
+
 .center {
   margin: 0 auto;
-  width: 66%;
-}
-.hover-fade {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-  -webkit-transition-property: color, background-color;
-  transition-property: color, background-color;
-}
-.hover-fade:hover,
-.hover-fade:focus,
-.hover-fade:active {
-  background-color: #2098d1;
-  color: white;
-}
+  width: 66%; }
+
 .fade-transition {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 100%;
-  opacity: 1;
-}
+  opacity: 1; }
+
 .fade-transition.ng-enter,
 .fade-transition.ng-leave {
   -webkit-transition: all .7s ease;
-  transition: all .7s ease;
-}
+          transition: all .7s ease; }
+
 .fade-transition.ng-enter {
-  opacity: 0;
-}
+  opacity: 0; }
+
 .fade-transition.ng-enter-active {
-  opacity: 1;
-}
+  opacity: 1; }
+
 .fade-transition.ng-leave {
-  opacity: 1;
-}
+  opacity: 1; }
+
 .fade-transition.ng-leave-active {
-  opacity: 0;
-}
+  opacity: 0; }
