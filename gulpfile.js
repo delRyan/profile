@@ -70,21 +70,18 @@ gulp.task('test', function(done) {
   }, done).start();
 });
 
-gulp.task('dev', gulp.series('wiredep',
-  gulp.parallel('styles-watcher', function() {
+gulp.task('dev', gulp.series('wiredep', function() {
 
-    startBrowserSync();
+  startBrowserSync();
 
-    return $.nodemon(getNodeOptions(/*isDev*/ true))
-      .on('restart', function() {
-        setTimeout(function() {
-          browserSync.notify('reloading');
-          browserSync.reload({stream: false});
-        }, 1000);
-      });
-
-  })
-));
+  return $.nodemon(getNodeOptions(/*isDev*/ true))
+    .on('restart', function() {
+      setTimeout(function() {
+        browserSync.notify('reloading');
+        browserSync.reload({stream: false});
+      }, 1000);
+    });
+}));
 
 gulp.task('temp-clean', function() {
   return del(config.tempfolder + '*');
