@@ -21,16 +21,11 @@
 .hover-fade {
   display: inline-block;
   vertical-align: middle;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  box-shadow: 0 0 1px transparent;
-  -webkit-backface-visibility: hidden;
+  box-shadow: 0 0 1px $transparent;
   backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
-  -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
-  -webkit-transition-property: color, background-color;
   transition-property: color, background-color;
 }
 .hover-fade:hover,
@@ -50,7 +45,6 @@
 }
 .fade-transition.ng-enter,
 .fade-transition.ng-leave {
-    -webkit-transition: all .7s ease;
     transition: all .7s ease;
 }
 .fade-transition.ng-enter { opacity: 0; }
