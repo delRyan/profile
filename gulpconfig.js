@@ -19,8 +19,8 @@ module.exports = function() {
 
     injectcss: [tempFolder + '**/*.css'],
 
-    less: clientfolder + '**/*.less',
-    images: clientfolder + 'images/**/*.*', 
+    sass: clientfolder + '**/*.scss',
+    images: clientfolder + 'images/**/*.*',
 
     serverjs: './src/server/server.js',
 

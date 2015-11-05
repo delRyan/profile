@@ -26,15 +26,15 @@ gulp.task('temp-clean-styles', function() {
 });
 
 gulp.task('styles-watcher', function() {
-  gulp.watch([config.less], gulp.series('styles'));
+  gulp.watch([config.sass], gulp.series('styles'));
 });
 
 gulp.task('styles', gulp.series('temp-clean-styles', function() {
 
   return gulp
-      .src(config.less)
+      .src(config.sass)
       .pipe($.plumber())
-      .pipe($.less())
+      .pipe($.sass())
       .pipe($.autoprefixer())
       .pipe($.rename({dirname: 'styles'}))
       .pipe(gulp.dest(config.tempfolder));
