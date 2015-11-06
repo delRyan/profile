@@ -2,12 +2,14 @@
 
 $margin-top: 30px;
 $padding-left: 15%;
-$padding-right: 15%;
+$padding-right: 12%;
+
+$link-spread: 35px;
 
 $logo-size: 25px;
 $link-size: 20px;
 
-.navbar-transparent {
+.navbar-primary {
   position: fixed;
   z-index: 1000;
 
@@ -52,7 +54,7 @@ $link-size: 20px;
     li {
       display: inline;
       font-size: $link-size;
-      margin-right: 12px;
+      margin-right: $link-spread;
 
       //List Items
       a {
@@ -95,6 +97,104 @@ $link-size: 20px;
 
           &:hover {
             background-color: $blue;
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
+
+//secondary-navbar
+
+.navbar-secondary {
+  position: fixed;
+  z-index: 1000;
+
+  width: 100%;
+  height: 60px;
+
+  padding-left: $padding-left;
+  padding-right: 0;
+
+  border-bottom: 2px solid $blue;
+
+  @media screen and (min-width: 1024px) {
+    padding-right: $padding-right;
+  }
+
+  background-color: $white;
+
+  //Logo
+  div {
+    margin-top: 12px;
+    float: left;
+    text-decoration: none;
+
+    a {
+      color: $gray;
+      text-decoration: none;
+
+      font-size: $logo-size;
+
+      &:hover { color: $gray; }
+      &:focus { color: $gray; }
+    }
+  }
+
+  ul {
+    float: right;
+    margin-top: 11px;
+    padding: 0;
+    list-style-type: none;
+
+    li {
+      display: inline;
+      font-size: $link-size;
+      margin-right: $link-spread;
+
+      //List Items
+      a {
+        color: $gray;
+        text-decoration: none;
+
+        padding: 5px;
+
+        transition-duration: 0.4s;
+        transition-property: color;
+
+        &:hover { color: $blue; }
+        &:focus { color: $gray; }
+      }
+
+      &:last-of-type {
+        a {
+          color: $gray;
+          height: 40px;
+          line-height: 29px;
+          margin-right: 10px;
+          margin-bottom: 3px;
+
+          display: inline-block;
+          width: 100px;
+          padding: 5px;
+          color: $white;
+          background-color: $blue;
+          border-radius: 5px;
+          text-align: center;
+          outline: none;
+          text-decoration: none;
+
+          vertical-align: middle;
+          transform: translateZ(0);
+          box-shadow: 0 0 1px $blue;
+          backface-visibility: hidden;
+          overflow: hidden;
+          transition-duration: 0.4s;
+          transition-property: color, background-color;
+
+          &:hover {
+            background-color: darken($blue, 10%);
             color: $white;
           }
         }
