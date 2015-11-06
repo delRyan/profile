@@ -13,7 +13,7 @@
     <base href="/">
   </head>
   <body ng-app="app">
-    <nav class="navbar-transparent">
+    <nav ng-class="navbarClass">
       <div>
         <a href="/">Ryan Delaney</a>
       </div>
@@ -27,7 +27,7 @@
     </nav>
 
     <!--div class="main-content fade-transition" ui-view data-ng-style="{'background-image':'url(images/interstellar.jpg)'}"></div-->
-    <div class="main-content fade-transition space-background" ui-view></div>
+    <div class="main-content fade-transition" ng-class="backgroundClass" ui-view></div>
 
     <!-- build:js js/lib.js -->
     <!-- bower:js -->

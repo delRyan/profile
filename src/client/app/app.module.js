@@ -12,21 +12,40 @@
           url: '/',
           templateUrl: 'app/profile/profile.html',
           controller: 'Profile',
-          controllerAs: 'profile'
+          controllerAs: 'profile',
+
+          backgroundClass: 'space-background',
+          navbarClass: 'navbar-primary'
         })
         .state('skills', {
           url: '/skills',
-          templateUrl: 'app/skills/skills.html'
+          templateUrl: 'app/skills/skills.html',
+
+          backgroundClass: '',
+          navbarClass: 'navbar-secondary'
         })
         .state('network', {
           url: '/network',
-          templateUrl: 'app/network/network.html'
+          templateUrl: 'app/network/network.html',
+
+          backgroundClass: '',
+          navbarClass: 'navbar-secondary'
         })
         .state('contact', {
           url: '/contact',
-          templateUrl: 'app/contact/contact.html'
+          templateUrl: 'app/contact/contact.html',
+
+          backgroundClass: '',
+          navbarClass: 'navbar-secondary'
         });
 
       $locationProvider.html5Mode(true);
+    })
+
+    .run(function($rootScope) {
+      $rootScope.$on('$stateChangeSuccess',function(event, toState) {
+        $rootScope.backgroundClass = toState.backgroundClass;
+        $rootScope.navbarClass = toState.navbarClass;
+      });
     });
 })();
