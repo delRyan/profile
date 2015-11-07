@@ -1,0 +1,13 @@
+.space-background {
+  background-image: url("../images/interstellar.jpg");
+  background-size: cover;
+  background-color: black; }
+
+.bar-background {
+  background-image: url("../images/flat-dark.jpg");
+  background-size: cover;
+  background-color: black; }
+
+.white-background {
+  background-size: cover;
+  background-color: white; }

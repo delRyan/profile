@@ -1,0 +1,48 @@
+.skill-header {
+  color: white;
+  display: inline-block; }
+  .skill-header h3 {
+    font-size: 25px; }
+  .skill-header h4 {
+    font-size: 17px; }
+
+.progress-bar-blue {
+  background-color: #3498db; }
+
+.progress-bar-red {
+  background-color: #e74c3c; }
+
+.progress-bar-yellow {
+  background-color: #f39c12; }
+
+.progress-bar-purple {
+  background-color: #9b59b6; }
+
+.progress-bar-green {
+  background-color: #2ecc71; }
+
+.skills-container {
+  width: 100%;
+  min-width: 1000px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.center-left {
+  width: 40%;
+  margin-right: 10%;
+  margin-left: 5%; }
