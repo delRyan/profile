@@ -1,0 +1,30 @@
+@import 'color.scss';
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 71px);
+}
+
+.center {
+  margin: 0 auto;
+  width: 66%;
+}
+
+.fade-transition {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    opacity: 1;
+}
+.fade-transition.ng-enter,
+.fade-transition.ng-leave {
+    transition: all .7s ease;
+}
+.fade-transition.ng-enter { opacity: 0; }
+.fade-transition.ng-enter-active { opacity: 1; }
+.fade-transition.ng-leave { opacity: 1; }
+.fade-transition.ng-leave-active { opacity: 0; }
