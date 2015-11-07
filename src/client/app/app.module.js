@@ -21,21 +21,21 @@
           url: '/skills',
           templateUrl: 'app/skills/skills.html',
 
-          backgroundClass: '',
+          backgroundClass: 'bar-background',
           navbarClass: 'navbar-secondary'
         })
         .state('network', {
           url: '/network',
           templateUrl: 'app/network/network.html',
 
-          backgroundClass: '',
+          backgroundClass: 'white-background',
           navbarClass: 'navbar-secondary'
         })
         .state('contact', {
           url: '/contact',
           templateUrl: 'app/contact/contact.html',
 
-          backgroundClass: '',
+          backgroundClass: 'white-background',
           navbarClass: 'navbar-secondary'
         });
 
