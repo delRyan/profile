@@ -47,6 +47,7 @@ gulp.task('temp-clean-images', function() {
 gulp.task('images', gulp.series('temp-clean-images', function() {
 
   return gulp.src(config.images)
+      .pipe($.imagemin())
       .pipe(gulp.dest(config.tempfolder + 'images'));
 }));
 
