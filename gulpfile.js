@@ -51,6 +51,13 @@ gulp.task('images', gulp.series('temp-clean-images', function() {
       .pipe(gulp.dest(config.tempfolder + 'images'));
 }));
 
+gulp.task('build-assets', gulp.series('images', function() {
+
+  return gulp.src(config.tempfolder + 'images/**/*.*')
+      .pipe(gulp.dest(config.buildfolder + 'images/'));
+  //Add Fonts
+}));
+
 gulp.task('wiredep', gulp.series('images', 'styles', function() {
   var wiredep = require('wiredep').stream;
 
@@ -104,9 +111,10 @@ gulp.task('temp-templatecache', function() {
       .pipe(gulp.dest(config.tempfolder));
 });
 
-gulp.task('build', gulp.series('wiredep', 'build-clean', 'temp-templatecache', function() {
+gulp.task('build', gulp.series('wiredep', 'build-clean', 'build-assets', 'temp-templatecache', function() {
   var assets = $.useref.assets({searchPath: './'});
 
+  var cssFilter = $.filter('**/*.css', {restore: true});
   var appJsFilter = $.filter('**/app.js', {restore: true});
   var libJsFilter = $.filter('**/lib.js', {restore: true});
 
@@ -117,18 +125,21 @@ gulp.task('build', gulp.series('wiredep', 'build-clean', 'temp-templatecache', f
           {starttag: config.templates.injectTag}
       ))
       .pipe($.eol())
-      .pipe(assets)
-      .pipe(libJsFilter)
-      .pipe($.uglify())
-      .pipe(libJsFilter.restore)
-      .pipe(appJsFilter)
-      .pipe($.ngAnnotate())
-      .pipe($.uglify())
-      .pipe(appJsFilter.restore)
-      .pipe($.rev())
-      .pipe(assets.restore())
-      .pipe($.useref())
-      .pipe($.revReplace())
+      .pipe(assets)              //get all files referenced in index.html
+      .pipe(cssFilter)           //filter only css
+      .pipe($.csso())            //optimize css
+      .pipe(cssFilter.restore)   //restore filter
+      .pipe(libJsFilter)         //filter vendor js
+      .pipe($.uglify())          //minify
+      .pipe(libJsFilter.restore) //restore filter
+      .pipe(appJsFilter)         //filter my js
+      .pipe($.ngAnnotate())      //add missing angular di annotations
+      .pipe($.uglify())          //minify
+      .pipe(appJsFilter.restore) //restore filter
+      .pipe($.rev())             //apply content hash to file names
+      .pipe(assets.restore())    //filter only index.html
+      .pipe($.useref())          //reference new concated and minified files
+      .pipe($.revReplace())      //replace filename strings that were hashed
       .pipe(gulp.dest(config.buildfolder));
 
   startBrowserSync();
