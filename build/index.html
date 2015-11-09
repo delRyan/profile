@@ -1,20 +1,29 @@
 <html>
-    <head>
-        <!-- bower:css -->
-        <!-- endbower -->
+  <head>
+    <link rel="stylesheet" href="styles/lib-8968ae2927.css">
 
-        <!-- inject:css -->
-        <!-- endinject -->
-        <base href="/">
-    </head>
+    <link rel="stylesheet" href="styles/app-cc82253775.css">
+    <base href="/">
+  </head>
+  <body ng-cloak ng-app="app">
+    <nav ng-class="navbarClass">
+      <div>
+        <a href="/">Ryan Delaney</a>
+      </div>
+      <ul>
+        <li><a href="/">Profile</a></li>
+        <li><a href="/skills">Skills</a></li>
+        <li><a href="/network">Network</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="https://github.com/delRyan/profile" target="_blank">Source</a></li>
+      </ul>
+    </nav>
 
-    <body ng-app="app">
-        <div>Hello, Express!</div>
-        <div>Hello, Angular! 1+2 = {{1+2}}</div>
-        <div ui-view></div>
+    <!--div class="main-content fade-transition" ui-view data-ng-style="{'background-image':'url(images/interstellar.jpg)'}"></div-->
+    <div class="main-content fade-transition" ng-class="backgroundClass" ui-view></div>
 
-        <script src="js/lib-2e6310cca7.js"></script>
+    <script src="js/lib-fb6d671bfd.js"></script>
 
-        <script src="js/app-05d353c854.js"></script>
-    </body>
+    <script src="js/app-405bdfe624.js"></script>
+  </body>
 </html>
