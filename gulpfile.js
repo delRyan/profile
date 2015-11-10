@@ -21,13 +21,12 @@ gulp.task('vet', function() {
       .pipe($.jshint.reporter('fail'));
 });
 
-gulp.task('temp-clean-styles', function() {
-  return del(config.tempfolder + '**/*.css');
-});
+gulp.task('temp-clean-styles', function() { return del(config.tempfolder + 'styles/**/*.*'); });
+gulp.task('temp-clean-images', function() { return del(config.tempfolder + 'images/**/*.*'); });
+gulp.task('temp-clean-fonts', function() { return del(config.tempfolder + 'fonts/**/*.*'); });
 
-gulp.task('styles-watcher', function() {
-  gulp.watch([config.sass], gulp.series('styles'));
-});
+gulp.task('temp-clean', function() { return del(config.tempfolder + '*'); });
+gulp.task('build-clean', function() { return del(config.buildfolder + '*'); });
 
 gulp.task('styles', gulp.series('temp-clean-styles', function() {
 
@@ -40,10 +39,6 @@ gulp.task('styles', gulp.series('temp-clean-styles', function() {
       .pipe(gulp.dest(config.tempfolder));
 }));
 
-gulp.task('temp-clean-images', function() {
-  return del(config.tempfolder + 'images/**/*.*');
-});
-
 gulp.task('images', gulp.series('temp-clean-images', function() {
 
   return gulp.src(config.images)
@@ -51,14 +46,21 @@ gulp.task('images', gulp.series('temp-clean-images', function() {
       .pipe(gulp.dest(config.tempfolder + 'images'));
 }));
 
-gulp.task('build-assets', gulp.series('images', function() {
+gulp.task('fonts', gulp.series('temp-clean-fonts', function() {
 
-  return gulp.src(config.tempfolder + 'images/**/*.*')
-      .pipe(gulp.dest(config.buildfolder + 'images/'));
-  //Add Fonts
+  return gulp.src(config.fonts)
+      .pipe(gulp.dest(config.tempfolder + 'fonts'));
 }));
 
-gulp.task('wiredep', gulp.series('images', 'styles', function() {
+gulp.task('build-assets', function() {
+  gulp.src(config.tempfolder + 'images/**/*.*')
+    .pipe(gulp.dest(config.buildfolder + 'images/'));
+
+  return gulp.src(config.tempfolder + 'fonts/**/*.*')
+    .pipe(gulp.dest(config.buildfolder + 'fonts/'));
+});
+
+gulp.task('wiredep', gulp.series('images', 'fonts', 'styles', function() {
   var wiredep = require('wiredep').stream;
 
   return gulp.src(config.index)
@@ -91,14 +93,6 @@ gulp.task('dev', gulp.series('wiredep', function() {
     });
 }));
 
-gulp.task('temp-clean', function() {
-  return del(config.tempfolder + '*');
-});
-
-gulp.task('build-clean', function() {
-  return del(config.buildfolder + '*');
-});
-
 gulp.task('temp-templatecache', function() {
   return gulp
       .src(config.templates.html)
@@ -111,14 +105,15 @@ gulp.task('temp-templatecache', function() {
       .pipe(gulp.dest(config.tempfolder));
 });
 
-gulp.task('build', gulp.series('wiredep', 'build-clean', 'build-assets', 'temp-templatecache', function() {
-  var assets = $.useref.assets({searchPath: './'});
+gulp.task('build',
+  gulp.series('wiredep', 'build-clean', 'build-assets', 'temp-templatecache', function() {
+    var assets = $.useref.assets({searchPath: './'});
 
-  var cssFilter = $.filter('**/*.css', {restore: true});
-  var appJsFilter = $.filter('**/app.js', {restore: true});
-  var libJsFilter = $.filter('**/lib.js', {restore: true});
+    var cssFilter = $.filter('**/*.css', {restore: true});
+    var appJsFilter = $.filter('**/app.js', {restore: true});
+    var libJsFilter = $.filter('**/lib.js', {restore: true});
 
-  gulp.src(config.index)
+    gulp.src(config.index)
       .pipe($.plumber())
       .pipe($.inject(
           gulp.src(config.templates.cacheFile, {read: false}),
@@ -142,16 +137,17 @@ gulp.task('build', gulp.series('wiredep', 'build-clean', 'build-assets', 'temp-t
       .pipe($.revReplace())      //replace filename strings that were hashed
       .pipe(gulp.dest(config.buildfolder));
 
-  startBrowserSync();
+    startBrowserSync();
 
-  return $.nodemon(getNodeOptions(/*isDev*/ false))
+    return $.nodemon(getNodeOptions(/*isDev*/ false))
       .on('restart', function() {
         setTimeout(function() {
           browserSync.notify('reloading');
           browserSync.reload({stream: false});
         }, 1000);
       });
-}));
+  }
+));
 
 ///
 

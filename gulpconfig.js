@@ -20,7 +20,9 @@ module.exports = function() {
     injectcss: [tempFolder + '**/*.css'],
 
     sass: clientfolder + '**/*.scss',
+
     images: clientfolder + 'images/**/*.*',
+    fonts: './bower_components/font-awesome/fonts/**/*.*',
 
     serverjs: './src/server/server.js',
 
