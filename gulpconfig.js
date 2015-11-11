@@ -22,7 +22,7 @@ module.exports = function() {
     sass: clientfolder + '**/*.scss',
 
     images: clientfolder + 'images/**/*.*',
-    fonts: './bower_components/font-awesome/fonts/**/*.*',
+    fonts: './bower_components/components-font-awesome/fonts/**/*.*',
 
     serverjs: './src/server/server.js',
 
