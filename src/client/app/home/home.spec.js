@@ -1,7 +1,7 @@
 /*jshint expr: true*/
 /*jshint -W117 */
 
-describe('profile controller', function() {
+describe('home controller', function() {
   'use strict';
 
   var controller;
@@ -9,7 +9,7 @@ describe('profile controller', function() {
   beforeEach(module('app'));
 
   beforeEach(inject(function($rootScope, $controller) {
-    controller = $controller('Profile', {$scope: $rootScope.$new()});
+    controller = $controller('Home', {$scope: $rootScope.$new()});
   }));
 
   afterEach(function() {

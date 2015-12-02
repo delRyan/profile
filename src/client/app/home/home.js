@@ -3,12 +3,12 @@
 
   angular
     .module('app')
-    .controller('Profile', Profile);
+    .controller('Home', Home);
 
-  function Profile() {
+  function Home() {
     var vm = this;
 
-    vm.title = 'Profile Controller';
+    vm.title = 'Home Controller';
     vm.fullName = 'Ryan Delaney';
   }
 })();
