@@ -14,7 +14,9 @@
 
 	min-width: 950px;
 	list-style: none;
-	padding-top: 100px;
+	padding-top: 60px;
+	margin-top: 10%;
+	margin-bottom: 10%;
 	margin: 0;
 }
 
@@ -25,6 +27,10 @@
 	height: 410px;
 	text-align: center;
 	border-top: 1px solid #ddd;
+
+	@media (max-height: 55em) {
+		height: 300px;
+	}
 
 	& > a {
 		display: block;
@@ -66,6 +72,10 @@
 	text-transform: none;
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
+
+	@media (max-height: 55em) {
+		font-size: 9em;
+	}
 
 	&:active {
 		text-decoration: none;

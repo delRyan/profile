@@ -9,7 +9,9 @@
 .network-grid {
   min-width: 950px;
   list-style: none;
-  padding-top: 100px;
+  padding-top: 60px;
+  margin-top: 10%;
+  margin-bottom: 10%;
   margin: 0; }
 
 /* grid item */
@@ -19,6 +21,9 @@
   height: 410px;
   text-align: center;
   border-top: 1px solid #ddd; }
+  @media (max-height: 55em) {
+    .network-grid li {
+      height: 300px; } }
   .network-grid li > a {
     display: block;
     height: 100%;
@@ -54,6 +59,9 @@
   text-transform: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased; }
+  @media (max-height: 55em) {
+    .icon:before, .twitter-icon:before, .google-plus-icon:before, .comment-icon:before, .linkedin-icon:before, .github-icon:before, .stack-overflow-icon:before {
+      font-size: 9em; } }
   .icon:before:active, .twitter-icon:before:active, .google-plus-icon:before:active, .comment-icon:before:active, .linkedin-icon:before:active, .github-icon:before:active, .stack-overflow-icon:before:active {
     text-decoration: none; }
 

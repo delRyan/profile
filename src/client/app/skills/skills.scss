@@ -17,6 +17,12 @@
   }
 }
 
+.progress {
+  @media (max-height: 45em) {
+    margin-bottom: 12px;
+  }
+}
+
 .progress-bar-blue {
     background-color: #3498db;
 }
