@@ -8,11 +8,11 @@
       $urlRouterProvider.otherwise('/');
 
       $stateProvider
-        .state('profile', {
+        .state('home', {
           url: '/',
-          templateUrl: 'app/profile/profile.html',
-          controller: 'Profile',
-          controllerAs: 'profile',
+          templateUrl: 'app/home/home.html',
+          controller: 'Home',
+          controllerAs: 'home',
 
           backgroundClass: 'space-background',
           navbarClass: 'navbar-primary'

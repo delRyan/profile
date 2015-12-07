@@ -1,17 +1,23 @@
 <html>
   <head>
+    <!-- build:css styles/lib.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/components-font-awesome/css/font-awesome.css" />
     <!-- endbower -->
-    
+    <!-- endbuild -->
+
+    <!-- build:css styles/app.css -->
     <!-- inject:css -->
     <link rel="stylesheet" href="/.temp/styles/background.css">
     <link rel="stylesheet" href="/.temp/styles/color.css">
+    <link rel="stylesheet" href="/.temp/styles/home.css">
     <link rel="stylesheet" href="/.temp/styles/navbar.css">
-    <link rel="stylesheet" href="/.temp/styles/profile.css">
+    <link rel="stylesheet" href="/.temp/styles/network.css">
     <link rel="stylesheet" href="/.temp/styles/skills.css">
     <link rel="stylesheet" href="/.temp/styles/styles.css">
     <!-- endinject -->
+    <!-- endbuild -->
     <base href="/">
   </head>
   <body ng-cloak ng-app="app">
@@ -20,10 +26,10 @@
         <a href="/">Ryan Delaney</a>
       </div>
       <ul>
-        <li><a href="/">Profile</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="/skills">Skills</a></li>
         <li><a href="/network">Network</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <!--li><a href="/contact">Contact</a></li-->
         <li><a href="https://github.com/delRyan/profile" target="_blank">Source</a></li>
       </ul>
     </nav>
@@ -44,7 +50,7 @@
     <!-- build:js js/app.js -->
     <!-- inject:js -->
     <script src="/src/client/app/app.module.js"></script>
-    <script src="/src/client/app/profile/profile.js"></script>
+    <script src="/src/client/app/home/home.js"></script>
     <!-- endinject -->
 
     <!-- inject:templates:js -->

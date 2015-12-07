@@ -33,15 +33,14 @@
 
 .skills-container {
   width: 100%;
-  min-width: 1000px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 }
 
-.center-left {
-  width: 40%;
+.skills-center {
+  width: 50%;
   margin-right: 10%;
-  margin-left: 5%;
+  margin-left: 10%;
 }
