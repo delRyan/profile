@@ -7,17 +7,16 @@
 
 /* General grid styles */
 .network-grid {
+  min-width: 950px;
   list-style: none;
-  padding-left: 50px;
-  padding-right: 50px;
   padding-top: 100px;
   margin: 0; }
 
 /* grid item */
 .network-grid li {
-  width: 33%;
+  width: 30%;
   float: left;
-  height: 420px;
+  height: 410px;
   text-align: center;
   border-top: 1px solid #ddd; }
   .network-grid li > a {
@@ -166,33 +165,3 @@
   background: #fff;
   margin-top: 80px;
   text-decoration: none; }
-
-@media screen and (max-width: 62.75em) {
-  .network-grid li {
-    width: 50%; }
-  /* reset the grid lines */
-  .network-grid li:nth-child(-n+3) {
-    border-top: 1px solid #ddd; }
-  .network-grid li:nth-child(3n-1),
-  .network-grid li:nth-child(3n-2) {
-    box-shadow: none; }
-  .network-grid li:nth-child(-n+2) {
-    border-top: none; }
-  .network-grid li:nth-child(2n-1) {
-    box-shadow: 1px 0 0 #ddd; } }
-
-@media screen and (max-width: 41.6em) {
-  .network-grid li {
-    width: 100%; }
-  .network-grid li:nth-child(-n+2) {
-    border-top: 1px solid #ddd; }
-  .network-grid li:nth-child(2n-1) {
-    box-shadow: none; }
-  .network-grid li:first-child {
-    border-top: none; } }
-
-@media screen and (max-width: 25em) {
-  .network-grid {
-    font-size: 80%; }
-  .network-grid .category {
-    margin-top: 20px; } }
