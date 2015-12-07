@@ -24,7 +24,7 @@ module.exports = function() {
     images: clientfolder + 'images/**/*.*',
     fonts: './bower_components/components-font-awesome/fonts/**/*.*',
 
-    serverjs: './src/server/server.js',
+    serverjs: './src/server/profileServer.js',
 
     templates: {
       html: [clientfolder + '**/*.html',
