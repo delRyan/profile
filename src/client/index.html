@@ -1,5 +1,6 @@
 <html>
   <head>
+  <style> .fouc { display: none; } </style>
     <!-- build:css styles/lib.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -20,7 +21,7 @@
     <!-- endbuild -->
     <base href="/">
   </head>
-  <body ng-cloak ng-app="app">
+  <body class="fouc" ng-cloak ng-app="app">
     <nav ng-class="navbarClass">
       <div>
         <a href="/">Ryan Delaney</a>
@@ -57,5 +58,6 @@
     <!-- endinject -->
 
     <!-- endbuild -->
+    <style> .fouc { display: block; } </style>
   </body>
 </html>
