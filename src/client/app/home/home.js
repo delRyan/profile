@@ -8,7 +8,7 @@
   function Home() {
     var vm = this;
 
-    vm.title = 'Home Controller';
     vm.fullName = 'Ryan Delaney';
+    vm.profession = 'Software Engineer';
   }
 })();

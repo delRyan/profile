@@ -8,6 +8,10 @@ describe('home controller', function() {
 
   beforeEach(module('app'));
 
+  beforeEach(module(function($urlRouterProvider) {
+    $urlRouterProvider.deferIntercept();
+  }));
+
   beforeEach(inject(function($rootScope, $controller) {
     controller = $controller('Home', {$scope: $rootScope.$new()});
   }));
@@ -22,8 +26,8 @@ describe('home controller', function() {
       expect(controller).to.exist;
     });
 
-    it('should have a populated title property', function() {
-      expect(controller.title).to.exist;
+    it('should have a populated profession property', function() {
+      expect(controller.profession).to.exist;
     });
 
     it('should have a populated fullName property', function() {
