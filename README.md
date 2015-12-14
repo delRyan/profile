@@ -1,2 +1,2 @@
 # Overview
-This will eventually be my public facing site. At the moment it represents my first deep dive into javascript and web technologies.
+The source for my public facing site. It also represents my first deep dive into javascript and web technologies. Take a look at [ryand.io](http://ryand.io).
